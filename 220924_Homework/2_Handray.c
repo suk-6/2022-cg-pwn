@@ -25,7 +25,7 @@ int main(){
     printf("분을 입력하세요.\n");
     scanf("%d", &input);
 
-    printf("%d분은 %d일 %d시간 %d분입니다.", input, func_days(input), func_hour(input), func_minute(input));
+    printf("%d분은 %d일 %d시간 %d분입니다.\n", input, func_days(input), func_hour(input), func_minute(input));
 
     return 0;
 }
