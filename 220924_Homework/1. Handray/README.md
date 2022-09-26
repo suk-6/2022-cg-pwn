@@ -151,25 +151,35 @@ Dump of assembler code for function func_days:
    0x0804848c <+1>:	mov    ebp,esp // 프롤로그
    0x0804848e <+3>:	sub    esp,0x4 // 4byte 지역변수 선언
    0x08048491 <+6>:	mov    DWORD PTR [ebp-0x4],0x0 // 0으로 초기화
-   0x08048498 <+13>:	mov    ecx,DWORD PTR [ebp+0x8]
+   0x08048498 <+13>:	mov    ecx,DWORD PTR [ebp+0x8] // main 에서 입력받은 값을 연산을 위해 ecx 레지스터에 복사
    0x0804849b <+16>:	mov    edx,0xb60b60b7
    0x080484a0 <+21>:	mov    eax,ecx
    0x080484a2 <+23>:	imul   edx
    0x080484a4 <+25>:	lea    eax,[edx+ecx*1]
-   0x080484a7 <+28>:	sar    eax,0xa
+   0x080484a7 <+28>:	sar    eax,0xa // 연산 과정은 모르겠지만 Shift 명령어가 작동되면 결과값이 eax 레지스터에 저장된다.
    0x080484aa <+31>:	mov    edx,eax
    0x080484ac <+33>:	mov    eax,ecx
    0x080484ae <+35>:	sar    eax,0x1f
    0x080484b1 <+38>:	sub    edx,eax
    0x080484b3 <+40>:	mov    eax,edx
-   0x080484b5 <+42>:	mov    DWORD PTR [ebp-0x4],eax
-   0x080484b8 <+45>:	mov    eax,DWORD PTR [ebp-0x4]
+   0x080484b5 <+42>:	mov    DWORD PTR [ebp-0x4],eax // 결과값을 지역변수에 담고
+   0x080484b8 <+45>:	mov    eax,DWORD PTR [ebp-0x4] // 그 지역변수를 main 함수로 리턴하기 위해 eax에 담는다.
    0x080484bb <+48>:	leave
    0x080484bc <+49>:	ret // main 함수로 return
 End of assembler dump.
 ```
 
-## 알게 된 것
+## 알게 된 내용
+### 바이트 저장 순서
+바이트가 저장되는 순서에 따라 두개의 방식으로 나눌 수 있습니다.
+
+#### Big Endian
+빅 엔디안은 낮은 주소에 MSB부터 저장하는 방식이다.
+
+#### Little Endian
+리틀 엔디안은 낮은 주소에 LSB부터 저장하는 방식이다.
+그래서 반대로 저장되기 때문에 거꾸로 읽어야 한다.
+
 ### Shift 연산자
 #### SHL (Shift Left)
 왼쪽으로 쉬프트 연산을 해 높은 비트를 내보내고 Carry Flag로 복사,
