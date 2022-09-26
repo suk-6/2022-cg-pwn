@@ -109,12 +109,12 @@ way.mulresult/0xFFFFFFFF(value*multiply/0xFFFFFFFF)>>shift =>; value*original
 ## func_hour 함수
 ```
 Dump of assembler code for function func_hour:
-   0x080484bd <+0>:	push   ebp
-   0x080484be <+1>:	mov    ebp,esp
-   0x080484c0 <+3>:	sub    esp,0x4
-   0x080484c3 <+6>:	mov    DWORD PTR [ebp-0x4],0x0
-   0x080484ca <+13>:	mov    ecx,DWORD PTR [ebp+0x8]
-   0x080484cd <+16>:	mov    edx,0x88888889
+   0x080484bd <+0>:	push   ebp // 프롤로그
+   0x080484be <+1>:	mov    ebp,esp // 프롤로그
+   0x080484c0 <+3>:	sub    esp,0x4 // 4byte 지역변수 선언
+   0x080484c3 <+6>:	mov    DWORD PTR [ebp-0x4],0x0 // 0으로 초기화
+   0x080484ca <+13>:	mov    ecx,DWORD PTR [ebp+0x8] // main 에서 입력받은 값을 연산을 위해 ecx 레지스터에 복사
+   0x080484cd <+16>:	mov    edx,0x88888889 // 연산 시작
    0x080484d2 <+21>:	mov    eax,ecx
    0x080484d4 <+23>:	imul   edx
    0x080484d6 <+25>:	lea    eax,[edx+ecx*1]
@@ -139,7 +139,7 @@ Dump of assembler code for function func_hour:
    0x08048506 <+73>:	shl    eax,0x3
    0x08048509 <+76>:	sub    ecx,eax
    0x0804850b <+78>:	mov    edx,ecx
-   0x0804850d <+80>:	mov    eax,edx
+   0x0804850d <+80>:	mov    eax,edx // main으로 리턴하기 위해 eax 레지스터에 결과값을 담는다.
    0x0804850f <+82>:	leave
    0x08048510 <+83>:	ret // main 함수로 return
 End of assembler dump.
@@ -152,11 +152,11 @@ Dump of assembler code for function func_days:
    0x0804848e <+3>:	sub    esp,0x4 // 4byte 지역변수 선언
    0x08048491 <+6>:	mov    DWORD PTR [ebp-0x4],0x0 // 0으로 초기화
    0x08048498 <+13>:	mov    ecx,DWORD PTR [ebp+0x8] // main 에서 입력받은 값을 연산을 위해 ecx 레지스터에 복사
-   0x0804849b <+16>:	mov    edx,0xb60b60b7
+   0x0804849b <+16>:	mov    edx,0xb60b60b7 // 연산 시작
    0x080484a0 <+21>:	mov    eax,ecx
    0x080484a2 <+23>:	imul   edx
    0x080484a4 <+25>:	lea    eax,[edx+ecx*1]
-   0x080484a7 <+28>:	sar    eax,0xa // 연산 과정은 모르겠지만 Shift 명령어가 작동되면 결과값이 eax 레지스터에 저장된다.
+   0x080484a7 <+28>:	sar    eax,0xa // 연산 과정은 모르겠지만 이 Shift 명령어가 작동되면 결과값이 eax 레지스터에 저장된다.
    0x080484aa <+31>:	mov    edx,eax
    0x080484ac <+33>:	mov    eax,ecx
    0x080484ae <+35>:	sar    eax,0x1f
@@ -168,6 +168,11 @@ Dump of assembler code for function func_days:
    0x080484bc <+49>:	ret // main 함수로 return
 End of assembler dump.
 ```
+
+## 로직
+main 함수가 실행되면 4byte 짜리 지역변수를 생성하고 "분을 입력하세요."를 출력한다.
+그 후, scanf로 정수 타입을 입력받고 func_minute, func_hour, func_days 함수를 호출해
+입력한 분을 일, 시간, 분으로 전환한다. 그리고 Return 된 값을 "%d분은 %d일 %d시간 %d분입니다.\n" 이 문자열에 담아 출력한다.
 
 ## 알게 된 내용
 ### 바이트 저장 순서
