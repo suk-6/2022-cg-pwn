@@ -98,13 +98,13 @@ Dump of assembler code for function func_minute:
    0x08048548 <+55>:	ret // main 함수로 return
 End of assembler dump.
 ```
+
 바이너리를 보았을 때 연산을 위한 명령어들이 있지만,
 어셈블리어에서는 나머지를 구하기 위한 명령어가 없기 때문에 연산이 엄청 복잡해보인다.
 ```
 way.mulresult/0xFFFFFFFF(value*multiply/0xFFFFFFFF)>>shift =>; value*original
 ```
 구글에서 찾은 나눗셈 식인데 쉬프트 연산자가 들어가는 걸 보니 대충 이런 방식을 이용한 거 같다.
-
 
 ## func_hour 함수
 ```
