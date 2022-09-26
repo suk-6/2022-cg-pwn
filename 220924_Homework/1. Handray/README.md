@@ -83,7 +83,7 @@ Dump of assembler code for function func_minute:
    0x08048523 <+18>:	sar    eax,0x5
    0x08048526 <+21>:	mov    edx,eax
    0x08048528 <+23>:	mov    eax,ecx
-   0x0804852a <+25>:	sar    eax,0x1f
+   0x0804852a <+25>:	sar    eax,0x1f // 0x1f=31, sar=shift 연산(오른쪽, 부호 유지)
    0x0804852d <+28>:	sub    edx,eax
    0x0804852f <+30>:	mov    eax,edx
    0x08048531 <+32>:	mov    edx,eax
@@ -160,3 +160,20 @@ Dump of assembler code for function func_days:
    0x080484bc <+49>:	ret
 End of assembler dump.
 ```
+
+## 알게 된 것
+### Shift 연산자
+#### SHL(Shift Left)
+왼쪽으로 쉬프트 연산을 해 높은 비트를 내보내고 Carry Flag로 복사,
+낮은 비트쪽에 0을 더하여 채운다.
+
+#### SHR(Shift Right)
+오른쪽으로 쉬프트 연산을 해 낮은 비트를 내보내고 Carry Flag로 복사,
+높은 비트쪽에 0을 더하여 채운다.
+
+#### SAL(Shift Arithmetic Left)
+SHL과 결과적으로 동일하다.
+
+#### SAR (Shift Arithmetic Right)
+SHR과 결과적으로 동일하지 않다.
+SHR 연산 후, MSB를 유지해야 한다.
