@@ -95,7 +95,7 @@ Dump of assembler code for function func_minute:
    0x08048543 <+50>:	sub    ecx,eax
    0x08048545 <+52>:	mov    eax,ecx
    0x08048547 <+54>:	pop    ebp
-   0x08048548 <+55>:	ret
+   0x08048548 <+55>:	ret // main 함수로 return
 End of assembler dump.
 ```
 바이너리를 보았을 때 연산을 위한 명령어들이 있지만,
@@ -141,16 +141,16 @@ Dump of assembler code for function func_hour:
    0x0804850b <+78>:	mov    edx,ecx
    0x0804850d <+80>:	mov    eax,edx
    0x0804850f <+82>:	leave
-   0x08048510 <+83>:	ret
+   0x08048510 <+83>:	ret // main 함수로 return
 End of assembler dump.
 ```
 ## func_days 함수
 ```
 Dump of assembler code for function func_days:
-   0x0804848b <+0>:	push   ebp
-   0x0804848c <+1>:	mov    ebp,esp
-   0x0804848e <+3>:	sub    esp,0x4
-   0x08048491 <+6>:	mov    DWORD PTR [ebp-0x4],0x0
+   0x0804848b <+0>:	push   ebp // 프롤로그
+   0x0804848c <+1>:	mov    ebp,esp // 프롤로그
+   0x0804848e <+3>:	sub    esp,0x4 // 4byte 지역변수 선언
+   0x08048491 <+6>:	mov    DWORD PTR [ebp-0x4],0x0 // 0으로 초기화
    0x08048498 <+13>:	mov    ecx,DWORD PTR [ebp+0x8]
    0x0804849b <+16>:	mov    edx,0xb60b60b7
    0x080484a0 <+21>:	mov    eax,ecx
@@ -165,7 +165,7 @@ Dump of assembler code for function func_days:
    0x080484b5 <+42>:	mov    DWORD PTR [ebp-0x4],eax
    0x080484b8 <+45>:	mov    eax,DWORD PTR [ebp-0x4]
    0x080484bb <+48>:	leave
-   0x080484bc <+49>:	ret
+   0x080484bc <+49>:	ret // main 함수로 return
 End of assembler dump.
 ```
 
