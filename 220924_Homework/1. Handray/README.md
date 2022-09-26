@@ -79,7 +79,7 @@ Dump of assembler code for function func_minute:
    0x08048517 <+6>:	mov    edx,0x88888889 // 곱셈 또는 나눗셈 연산을 위해 edx 레지스터 사용
    0x0804851c <+11>:	mov    eax,ecx // ecx의 값(main의 입력값)을 eax 레지스터에 넣어줌.
    0x0804851e <+13>:	imul   edx // edx 곱셈
-   0x08048520 <+15>:	lea    eax,[edx+ecx*1]
+   0x08048520 <+15>:	lea    eax,[edx+ecx*1] 
    0x08048523 <+18>:	sar    eax,0x5
    0x08048526 <+21>:	mov    edx,eax
    0x08048528 <+23>:	mov    eax,ecx
@@ -98,6 +98,14 @@ Dump of assembler code for function func_minute:
    0x08048548 <+55>:	ret
 End of assembler dump.
 ```
+바이너리를 보았을 때 연산을 위한 명령어들이 있지만,
+어셈블리어에서는 나머지를 구하기 위한 명령어가 없기 때문에 연산이 엄청 복잡해보인다.
+```
+way.mulresult/0xFFFFFFFF(value*multiply/0xFFFFFFFF)>>shift =>; value*original
+```
+구글에서 찾은 나눗셈 식인데 쉬프트 연산자가 들어가는 걸 보니 대충 이런 방식을 이용한 거 같다.
+
+
 ## func_hour 함수
 ```
 Dump of assembler code for function func_hour:
@@ -163,15 +171,15 @@ End of assembler dump.
 
 ## 알게 된 것
 ### Shift 연산자
-#### SHL(Shift Left)
+#### SHL (Shift Left)
 왼쪽으로 쉬프트 연산을 해 높은 비트를 내보내고 Carry Flag로 복사,
 낮은 비트쪽에 0을 더하여 채운다.
 
-#### SHR(Shift Right)
+#### SHR (Shift Right)
 오른쪽으로 쉬프트 연산을 해 낮은 비트를 내보내고 Carry Flag로 복사,
 높은 비트쪽에 0을 더하여 채운다.
 
-#### SAL(Shift Arithmetic Left)
+#### SAL (Shift Arithmetic Left)
 SHL과 결과적으로 동일하다.
 
 #### SAR (Shift Arithmetic Right)
