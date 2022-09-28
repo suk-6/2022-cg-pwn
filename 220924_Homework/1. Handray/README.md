@@ -178,27 +178,27 @@ main 함수가 실행되면 4byte 짜리 지역변수를 생성하고 "분을 �
 ### 바이트 저장 순서
 바이트가 저장되는 순서에 따라 두개의 방식으로 나눌 수 있습니다.
 
-#### Big Endian
+##### Big Endian
 빅 엔디안은 낮은 주소에 MSB부터 저장하는 방식이다.
 
-#### Little Endian
+##### Little Endian
 리틀 엔디안은 낮은 주소에 LSB부터 저장하는 방식이다.
 그래서 반대로 저장되기 때문에 거꾸로 읽어야 한다.
 
 -----------
 
 ### Shift 연산자
-#### SHL (Shift Left)
+##### SHL (Shift Left)
 왼쪽으로 쉬프트 연산을 해 높은 비트를 내보내고 Carry Flag로 복사,
 낮은 비트쪽에 0을 더하여 채운다.
 
-#### SHR (Shift Right)
+##### SHR (Shift Right)
 오른쪽으로 쉬프트 연산을 해 낮은 비트를 내보내고 Carry Flag로 복사,
 높은 비트쪽에 0을 더하여 채운다.
 
-#### SAL (Shift Arithmetic Left)
+##### SAL (Shift Arithmetic Left)
 SHL과 결과적으로 동일하다.
 
-#### SAR (Shift Arithmetic Right)
+##### SAR (Shift Arithmetic Right)
 SHR과 결과적으로 동일하지 않다.
 SHR 연산 후, MSB를 유지해야 한다.
