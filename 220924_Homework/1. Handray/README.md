@@ -27,7 +27,7 @@ Non-debugging symbols:
 ```
 Dump of assembler code for function main:
    0x08048549 <+0>:	push   ebp // 프롤로그 - ebp 레지스터를 stack에 넣는다.
-   0x0804854a <+1>:	mov    ebp,esp // 프롤로그 - 레지스터 ebp를 esp에 넣는다.
+   0x0804854a <+1>:	mov    ebp,esp // 프롤로그 - esp 레지스터의 값을 ebp에 복사한다.
    0x0804854c <+3>:	push   esi
    0x0804854d <+4>:	push   ebx
    0x0804854e <+5>:	sub    esp,0x4 // 4byte(int, long int, float) 선언 - 지역변수 공간 확보
@@ -35,10 +35,10 @@ Dump of assembler code for function main:
    0x08048556 <+13>:	call   0x8048350 <puts@plt> // puts - 문자 출력
    0x0804855b <+18>:	add    esp,0x4 // main+8 줄에서 push 했던 값 정리
    0x0804855e <+21>:	lea    eax,[ebp-0xc] // ebp-0xc의 주소값을 eax로 복사
-   0x08048561 <+24>:	push   eax // '0xfffa4a3c' 주소의 0x0 값을 stack에 넣음
+   0x08048561 <+24>:	push   eax // +21번 줄에서 ebp-0xc의 주소값을 eax에 넣었기 때문에 stack에 주소 안의 값이 아닌 주소 자체가 push 된다.
    0x08048562 <+25>:	push   0x8048658 // '%d'를 scanf로 입력받기 위해 stack에 넣음
    0x08048567 <+30>:	call   0x8048370 <__isoc99_scanf@plt> // scanf로 '%d'를 입력받고 'ebp-0xc'에 보관
-   0x0804856c <+35>:	add    esp,0x8 // scanf에서 입력된 값을 esp 레지스터에 넣음.
+   0x0804856c <+35>:	add    esp,0x8 // scanf가 실행되기 전에 push한 데이터 2개(8byte)를 정리해준다.
    0x0804856f <+38>:	mov    eax,DWORD PTR [ebp-0xc] // 함수에 입력값을 전달하기 위해 ebp-0xc의 값을 eax로 복사
    0x08048572 <+41>:	push   eax // stack에 eax 추가 (함수에 인자를 넘겨주기 위해)
    0x08048573 <+42>:	call   0x8048511 <func_minute> // func_minute 함수 호출
