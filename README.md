@@ -3,3 +3,4 @@
     docker run -it --security-opt seccomp=unconfined --name=pwn aku34587/cyber_guardians:1.0
 ### Gcc Compile Command
     gcc -fno-stack-protector -no-pie -mpreferred-stack-boundary=2 -m32 file.c
+    gcc -fno-stack-protector -no-pie -mpreferred-stack-boundary=2 -m32 -z execstack file.c
