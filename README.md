@@ -2,6 +2,9 @@
 ### Docker Run Command
     docker run -it --security-opt seccomp=unconfined --name=pwn aku34587/cyber_guardians:1.0
     
+### AMD64 Docker image on ARM
+    --platform=linux/amd64
+    
 ### Custom Docker image
     docker run -it --name=pwn16 docker.dyhs.kr/pwn/pwn:16.04
     docker run -it --name=pwn18 docker.dyhs.kr/pwn/pwn:18.04
